@@ -1,7 +1,6 @@
 package ir.unicodes.doctor.activity;
 
 import android.graphics.Typeface;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -9,28 +8,35 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
+import ir.unicodes.doctor.Interface.OnFragmentInteractionListener;
 import ir.unicodes.doctor.R;
 import ir.unicodes.doctor.classes.Variables;
 import ir.unicodes.doctor.fragment.ListDataFragment;
-import ir.unicodes.doctor.fragment.MainFragment;
 
-public class NewsActivity extends AppCompatActivity {
+public class NewsActivity extends AppCompatActivity
+        implements
+        OnFragmentInteractionListener {
 
     private Typeface San;
     private Toolbar toolbar;
     private TextView txtToolbar;
     private FragmentManager fragmentManager;
+    /*FACTION is type of data which get from server*/
     private String FACTION = Variables.getNews;
-
+    /*isFolder = {
+                false :list of data to show
+                true  :folder of objects
+     }*/
+    private Boolean isFolder = false;
+    /*onCreate*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
         define();
-        /*set fragment*/
         setFragment();
     }// end onCreate()
-
+    /*set typeface findViewByIds set toolbar text and navigation*/
     private void define() {
         San = Typeface.createFromAsset(getAssets(), "fonts/SansLight.ttf");
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -42,13 +48,13 @@ public class NewsActivity extends AppCompatActivity {
         txtToolbar.setText("اخبار");
         fragmentManager = getSupportFragmentManager();
     }// end define()
-
+    /*set fragment*/
     protected void setFragment() {
 
         ListDataFragment myFragment = new ListDataFragment();
         Bundle bundle = new Bundle();
         bundle.putString("FACTION", FACTION);
-        bundle.putString("param2", "بای بای");
+        bundle.putBoolean("KIND", isFolder);
         myFragment.setArguments(bundle);
 
         FragmentTransaction ft = fragmentManager.beginTransaction();
@@ -56,5 +62,10 @@ public class NewsActivity extends AppCompatActivity {
         ft.commit();
 
     }// end setFragment()
+
+    @Override
+    public void onFragmentInteraction(int tagNumber) {
+
+    }
 
 }// end class

@@ -34,10 +34,10 @@ public class ListDataFragment extends Fragment {
     private ViewGroup layout;
 
     private static final String ARG_PARAM1 = "FACTION";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_PARAM2 = "KIND";
 
     private String FACTION;
-    private String mParam2;
+    private boolean isFolader;
 
     private int page = 1;
     private Timer timer;
@@ -65,8 +65,8 @@ public class ListDataFragment extends Fragment {
         super.onCreate(savedInstanceState);
         San = Typeface.createFromAsset(getActivity().getAssets(), "fonts/SansLight.ttf");
         if (getArguments() != null) {
-            FACTION = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            FACTION     = getArguments().getString(ARG_PARAM1);
+            isFolader   = getArguments().getBoolean(ARG_PARAM2);
         }
     }
 
@@ -85,11 +85,7 @@ public class ListDataFragment extends Fragment {
         rv = (RecyclerView) layout.findViewById(R.id.rv);
         LinearLayoutManager lm = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         rv.setLayoutManager(lm);
-        /*get Intent data from the activity which call fragment*/
-        getWhat();
-        /*set situation of fab*/
         setFab();
-        /*set data of recycleview*/
         setRecycleView();
     }
 
@@ -101,7 +97,7 @@ public class ListDataFragment extends Fragment {
             //mParam1 = bundle.getString("title");
         }
     }
-
+    /*handle on views click by interface in Activity which calls the fragment*/
     public void onButtonPressed(int tagNumber) {
         if (mListener != null) {
             mListener.onFragmentInteraction(tagNumber);
@@ -124,23 +120,28 @@ public class ListDataFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
-
+    /*set RecycleView adapter*/
     private void refreshAdapter(){
 
         //mAdapter = new RecycleViewAdapter_aboutus(rvList,San,getActivity());
         //rv.setAdapter(mAdapter);
     }// end refreshAdapter()
-
-    private void getWhat(){
-
-    }// end getWhat()
-
+    /*set situation of fab*/
     private void setFab() {
 
+        switch (FACTION){
+
+            case Variables.getNews:
+                break;
+
+            default:
+                break;
+
+        }// end switch
+
     }// end setFab()
-
+    /*set data of RecycleView*/
     private void setRecycleView(){
-
         /*refresh the adapter*/
         refreshAdapter();
     }// end setRecycleView()
