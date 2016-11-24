@@ -1,0 +1,61 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/GrayDark"
+    tools:context="ir.unicodes.doctor.fragment.LoginFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:focusable="false">
+
+        <android.support.design.widget.TextInputLayout
+            android:background="@color/White"
+            android:id="@+id/til1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <EditText
+                android:id="@+id/edtNationalCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="کد ملی"
+                android:inputType="number"
+                android:maxLines="1"
+                android:gravity="center" />
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_50sdp">
+            <Button
+                android:id="@+id/btnLogin"
+                android:background="@drawable/shape_buttom_blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Login"
+                android:textColor="@color/White"
+                android:layout_margin="5dp"/>
+            <Button
+                android:id="@+id/btnSignUp"
+                android:background="@drawable/shape_buttom_red"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sign Up"
+                android:textColor="@color/White"
+                android:layout_margin="5dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</FrameLayout>
