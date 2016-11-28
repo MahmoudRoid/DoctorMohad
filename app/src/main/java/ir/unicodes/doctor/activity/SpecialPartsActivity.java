@@ -15,7 +15,7 @@ import ir.unicodes.doctor.R;
 import ir.unicodes.doctor.classes.Variables;
 import ir.unicodes.doctor.fragment.ListDataFragment;
 
-public class NewsActivity extends AppCompatActivity
+public class SpecialPartsActivity extends AppCompatActivity
         implements
         OnFragmentInteractionListener {
 
@@ -24,17 +24,17 @@ public class NewsActivity extends AppCompatActivity
     private TextView txtToolbar;
     private FragmentManager fragmentManager;
     /*FACTION is type of data which get from server*/
-    private String FACTION = Variables.getNews;
+    private String FACTION = Variables.getParts;
     /*isFolder = {
                 false :list of data to show
                 true  :folder of objects
      }*/
-    private Boolean isFolder = false;
+    private Boolean isFolder = true;
     /*onCreate*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_news);
+        setContentView(R.layout.activity_special_parts);
         define();
         setFragment();
     }// end onCreate()
@@ -47,7 +47,7 @@ public class NewsActivity extends AppCompatActivity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         txtToolbar = (TextView) findViewById(R.id.txtToolbar_appbar);
         txtToolbar.setTypeface(San);
-        txtToolbar.setText("اخبار");
+        txtToolbar.setText("بخش های تخصصی");
         fragmentManager = getSupportFragmentManager();
     }// end define()
     /*set fragment*/

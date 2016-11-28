@@ -46,6 +46,7 @@
             app:cardCornerRadius="4dp">
 
             <LinearLayout
+                android:id="@+id/layQuestions"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
@@ -85,6 +86,7 @@
                 app:cardCornerRadius="4dp">
 
                 <LinearLayout
+                    android:id="@+id/layMagazine"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
@@ -122,6 +124,8 @@
                     app:cardCornerRadius="4dp">
 
                     <LinearLayout
+
+                        android:id="@+id/layRSS"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
@@ -148,6 +152,7 @@
                     app:cardCornerRadius="4dp">
 
                     <LinearLayout
+                        android:id="@+id/layNews"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
@@ -182,6 +187,7 @@
                 app:cardCornerRadius="4dp">
 
                 <LinearLayout
+                    android:id="@+id/layDrugs"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"

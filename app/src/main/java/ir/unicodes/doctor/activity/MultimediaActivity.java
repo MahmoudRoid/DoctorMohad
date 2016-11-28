@@ -1,5 +1,6 @@
 package ir.unicodes.doctor.activity;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -8,35 +9,52 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import ir.unicodes.doctor.Interface.OnFragmentInteractionListener;
 import ir.unicodes.doctor.R;
 import ir.unicodes.doctor.classes.Variables;
 import ir.unicodes.doctor.fragment.ListDataFragment;
 
-public class NewsActivity extends AppCompatActivity
-        implements
-        OnFragmentInteractionListener {
+public class MultimediaActivity extends AppCompatActivity {
 
-    private Typeface San;
     private Toolbar toolbar;
     private TextView txtToolbar;
+    private Typeface San;
+    private ImageView ivImageGallery,ivVideoGallery;
     private FragmentManager fragmentManager;
-    /*FACTION is type of data which get from server*/
-    private String FACTION = Variables.getNews;
-    /*isFolder = {
-                false :list of data to show
-                true  :folder of objects
-     }*/
-    private Boolean isFolder = false;
-    /*onCreate*/
+    private String FACTION = "";
+    private boolean isFolder = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_news);
+        setContentView(R.layout.activity_multimedia);
         define();
-        setFragment();
+
+        ivImageGallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FACTION = Variables.getImages;
+                //setFragment();
+                Intent intent = new Intent(MultimediaActivity.this, MultimediaFoldersActivity.class);
+                intent.putExtra("FACTION",FACTION);
+                startActivity(intent);
+            }
+        });
+
+        ivVideoGallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FACTION = Variables.getVideos;
+                //setFragment();
+                Intent intent = new Intent(MultimediaActivity.this, MultimediaFoldersActivity.class);
+                intent.putExtra("FACTION",FACTION);
+                startActivity(intent);
+            }
+        });
+
     }// end onCreate()
     /*set typeface findViewByIds set toolbar text and navigation*/
     private void define() {
@@ -47,8 +65,13 @@ public class NewsActivity extends AppCompatActivity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         txtToolbar = (TextView) findViewById(R.id.txtToolbar_appbar);
         txtToolbar.setTypeface(San);
-        txtToolbar.setText("اخبار");
+        txtToolbar.setText("گالری مولتی مدیا");
+
+        ivImageGallery = (ImageView) findViewById(R.id.ivImageGallery);
+        ivVideoGallery = (ImageView) findViewById(R.id.ivViGalleryGallery);
+
         fragmentManager = getSupportFragmentManager();
+
     }// end define()
     /*set fragment*/
     protected void setFragment() {
@@ -64,11 +87,6 @@ public class NewsActivity extends AppCompatActivity
         ft.commit();
 
     }// end setFragment()
-
-    @Override
-    public void onFragmentInteraction(int tagNumber) {
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/GrayDark"
+    android:background="@drawable/login_background"
     tools:context="ir.unicodes.doctor.fragment.LoginFragment">
 
     <LinearLayout
@@ -15,19 +15,21 @@
         android:focusable="false">
 
         <android.support.design.widget.TextInputLayout
-            android:background="@color/White"
+            android:background="@android:color/transparent"
             android:id="@+id/til1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
+            android:layout_marginRight="20dp"
+            android:textColorHint="@color/White">
 
             <EditText
                 android:id="@+id/edtNationalCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="کد ملی"
+                android:textColor="@color/White"
+                android:hint="وارد کردن کد ملی"
                 android:inputType="number"
                 android:maxLines="1"
                 android:gravity="center" />

@@ -1,13 +1,16 @@
 package ir.unicodes.doctor.fragment;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import ir.unicodes.doctor.Interface.OnFragmentInteractionListener;
@@ -25,6 +28,9 @@ public class LoginFragment extends Fragment {
     private String mParam2;
 
     private Button btnLogin, btnSignUp;
+    private EditText edtNationalCode;
+    private TextInputLayout til;
+    private Typeface San;
 
     private OnFragmentInteractionListener mListener;
 
@@ -42,6 +48,7 @@ public class LoginFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        San = Typeface.createFromAsset(getActivity().getAssets(), "fonts/SansLight.ttf");
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -62,6 +69,11 @@ public class LoginFragment extends Fragment {
         MainActivity.isMain = false;
         btnLogin = (Button) layout.findViewById(R.id.btnLogin);
         btnSignUp = (Button) layout.findViewById(R.id.btnSignUp);
+        edtNationalCode = (EditText) layout.findViewById(R.id.edtNationalCode);
+        til = (TextInputLayout) layout.findViewById(R.id.til1);
+
+        edtNationalCode.setTypeface(San);
+        til.setTypeface(San);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

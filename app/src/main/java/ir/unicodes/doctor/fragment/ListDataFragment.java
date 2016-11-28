@@ -37,12 +37,8 @@ public class ListDataFragment extends Fragment {
     private static final String ARG_PARAM2 = "KIND";
 
     private String FACTION;
-    private boolean isFolader;
+    private boolean isFolder;
 
-    private int page = 1;
-    private Timer timer;
-    private ViewPager vp;
-    private List<String> myList = new ArrayList<>();
     private RecyclerView rv;
     private FloatingActionButton fab;
     private Typeface San;
@@ -66,13 +62,12 @@ public class ListDataFragment extends Fragment {
         San = Typeface.createFromAsset(getActivity().getAssets(), "fonts/SansLight.ttf");
         if (getArguments() != null) {
             FACTION     = getArguments().getString(ARG_PARAM1);
-            isFolader   = getArguments().getBoolean(ARG_PARAM2);
+            isFolder    = getArguments().getBoolean(ARG_PARAM2);
         }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         layout = (ViewGroup) inflater.inflate(R.layout.fragment_list_data, container, false);
         return layout;
     }
@@ -134,6 +129,9 @@ public class ListDataFragment extends Fragment {
             case Variables.getNews:
                 break;
 
+            case Variables.getMagazine:
+                break;
+
             default:
                 break;
 
@@ -146,4 +144,11 @@ public class ListDataFragment extends Fragment {
         refreshAdapter();
     }// end setRecycleView()
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(FACTION.equals(Variables.getFavorites)){
+            // TODO : refresh adapter
+        }
+    }
 }// end class

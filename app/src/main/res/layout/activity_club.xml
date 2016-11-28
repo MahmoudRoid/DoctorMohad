@@ -9,6 +9,7 @@
     tools:context="ir.unicodes.doctor.activity.ClubActivity">
     <!--Toolbar-->
     <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="150dp"
@@ -27,13 +28,14 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/ivMailBox"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:src="@drawable/mail_white"
                     android:layout_margin="5dp"/>
 
                 <TextView
-                    android:id="@+id/txtToolbar_appbar"
+                    android:id="@+id/txtToolbar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -73,6 +75,7 @@
                 android:layout_margin="4dp">
 
                 <LinearLayout
+                    android:id="@+id/layMatches"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
@@ -107,6 +110,7 @@
                     android:layout_margin="4dp">
 
                     <LinearLayout
+                        android:id="@+id/layConsult"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
@@ -136,6 +140,7 @@
                     android:layout_margin="4dp">
 
                     <LinearLayout
+                        android:id="@+id/layPoll"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
@@ -170,6 +175,7 @@
                     android:layout_margin="4dp">
 
                     <LinearLayout
+                        android:id="@+id/layChat"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"

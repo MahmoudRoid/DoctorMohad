@@ -15,7 +15,7 @@ import ir.unicodes.doctor.R;
 import ir.unicodes.doctor.classes.Variables;
 import ir.unicodes.doctor.fragment.ListDataFragment;
 
-public class NewsActivity extends AppCompatActivity
+public class ServicesActivity extends AppCompatActivity
         implements
         OnFragmentInteractionListener {
 
@@ -24,7 +24,7 @@ public class NewsActivity extends AppCompatActivity
     private TextView txtToolbar;
     private FragmentManager fragmentManager;
     /*FACTION is type of data which get from server*/
-    private String FACTION = Variables.getNews;
+    private String FACTION = Variables.getServices;
     /*isFolder = {
                 false :list of data to show
                 true  :folder of objects
@@ -34,7 +34,7 @@ public class NewsActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_news);
+        setContentView(R.layout.activity_services);
         define();
         setFragment();
     }// end onCreate()
@@ -47,7 +47,7 @@ public class NewsActivity extends AppCompatActivity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         txtToolbar = (TextView) findViewById(R.id.txtToolbar_appbar);
         txtToolbar.setTypeface(San);
-        txtToolbar.setText("اخبار");
+        txtToolbar.setText("سرویس ها و خدمات");
         fragmentManager = getSupportFragmentManager();
     }// end define()
     /*set fragment*/

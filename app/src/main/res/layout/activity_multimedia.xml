@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_multimedia"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="ir.unicodes.doctor.activity.MultimediaActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/appbar_color"/>
+
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:id="@+id/ivImageGallery"
+        android:src="@drawable/apps"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_150sdp"
+        android:layout_gravity="center" />
+
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:id="@+id/ivViGalleryGallery"
+        android:src="@drawable/camera2"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_150sdp"
+        android:layout_gravity="center" />
+
+</LinearLayout>

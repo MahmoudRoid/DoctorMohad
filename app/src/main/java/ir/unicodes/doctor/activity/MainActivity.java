@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.widget.Toast;
 import ir.unicodes.doctor.Interface.OnFragmentInteractionListener;
 import ir.unicodes.doctor.R;
+import ir.unicodes.doctor.classes.Variables;
 import ir.unicodes.doctor.fragment.AboutUsFragment;
 import ir.unicodes.doctor.fragment.LoginFragment;
 import ir.unicodes.doctor.fragment.MainFragment;
@@ -31,6 +33,7 @@ import com.yalantis.contextmenu.lib.MenuParams;
 import com.yalantis.contextmenu.lib.interfaces.OnMenuItemClickListener;
 import com.yalantis.contextmenu.lib.interfaces.OnMenuItemLongClickListener;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +41,8 @@ public class MainActivity extends AppCompatActivity
         implements
         OnFragmentInteractionListener,
         OnMenuItemClickListener,
-        OnMenuItemLongClickListener{
+        OnMenuItemLongClickListener
+{
 
     private FragmentManager fragmentManager;
     private ContextMenuDialogFragment mMenuDialogFragment;
@@ -113,9 +117,6 @@ public class MainActivity extends AppCompatActivity
         MenuObject close = new MenuObject();
         close.setResource(R.drawable.icn_closes);
 
-        MenuObject send = new MenuObject("معرفی به دوستان");
-        send.setResource(R.drawable.share_black);
-
         MenuObject like = new MenuObject("علاقمندی ها");
         Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.favorite_black);
         like.setBitmap(b);
@@ -128,14 +129,17 @@ public class MainActivity extends AppCompatActivity
         MenuObject addFav = new MenuObject("ارتباط با پشتیبانی");
         addFav.setResource(R.drawable.settings_black);
 
+        MenuObject send = new MenuObject("معرفی به دوستان");
+        send.setResource(R.drawable.share_black);
+
         MenuObject block = new MenuObject("داروخانه ها");
         block.setResource(R.drawable.my_location_black);
 
         menuObjects.add(close);
-        menuObjects.add(send);
         menuObjects.add(like);
         menuObjects.add(addFr);
         menuObjects.add(addFav);
+        menuObjects.add(send);
         menuObjects.add(block);
         return menuObjects;
     }// end getMenuObjects()
@@ -236,9 +240,81 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case 12:
+                // بخش های تخصصی
+                intent = new Intent(MainActivity.this, SpecialPartsActivity.class);
+                startActivity(intent);
                 break;
 
             case 13:
+                // گالری مولتی مدیا
+                break;
+
+            case 14:
+                // شبکه های اجتماعی
+                break;
+
+            case 15:
+                // تماس با ما
+                break;
+
+            case 20:
+                // بیمه های تحت پوشش
+                intent = new Intent(MainActivity.this, InsuranceActivity.class);
+                startActivity(intent);
+                break;
+
+            case 21:
+                // سرویس ها
+                intent = new Intent(MainActivity.this, ServicesActivity.class);
+                startActivity(intent);
+                break;
+
+            case 22:
+                // نوبت دهی
+                break;
+
+            case 23:
+                // تخمین هزینه
+                break;
+
+            case 24:
+                // مراقبت های بعد
+                intent = new Intent(MainActivity.this, ServicesActivity.class);
+                intent.putExtra("FACTION", Variables.getCareAfter);
+                startActivity(intent);
+                break;
+
+            case 25:
+                // مراقبت های قبل
+                intent = new Intent(MainActivity.this, ServicesActivity.class);
+                intent.putExtra("FACTION", Variables.getCareBefore);
+                startActivity(intent);
+                break;
+
+            case 30:
+                // اخبار
+                intent = new Intent(MainActivity.this, NewsActivity.class);
+                startActivity(intent);
+                break;
+
+            case 31:
+                // RSS
+                intent = new Intent(MainActivity.this, NewsActivity.class);
+                startActivity(intent);
+                break;
+
+            case 32:
+                // مجله
+                intent = new Intent(MainActivity.this, MagazineActivity.class);
+                startActivity(intent);
+                break;
+
+            case 33:
+                // سوالات متداول
+                break;
+
+            case 34:
+                // دارو ها و عوارض
                 break;
 
             case 41:
@@ -249,7 +325,7 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case 42:
-                // باشگاه مشتریان
+                // ثبت نام
                 SignUpFragment signUpFragment = new SignUpFragment();
                 ft.setCustomAnimations(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
                 ft.replace(R.id.frame_fragments, signUpFragment);
@@ -264,7 +340,46 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onMenuItemClick(View clickedView, int position) {
-        Toast.makeText(this, "Clicked on position: " + position, Toast.LENGTH_SHORT).show();
+        Intent intent;
+        switch (position){
+            case 0:
+                // بستن
+                break;
+
+            case 1:
+                // علاقمندی ها
+                intent = new Intent(MainActivity.this, FavoriteActivity.class);
+                startActivity(intent);
+                break;
+
+            case 2:
+                // انتقادات و پیشنهادات
+                intent = new Intent(MainActivity.this, SendIdeasActivity.class);
+                startActivity(intent);
+                break;
+
+            case 3:
+                // ارتباط با پشتیبانی
+                intent = new Intent(MainActivity.this, DeveloperActivity.class);
+                startActivity(intent);
+                break;
+
+            case 4:
+                // معرفی به دوستان
+                try{
+                    ArrayList<Uri> uris = new ArrayList<>();
+                    Intent sendIntent = new Intent(Intent.ACTION_SEND_MULTIPLE);
+                    sendIntent.setType("application/*");
+                    uris.add(Uri.fromFile(new File(getApplicationInfo().publicSourceDir)));
+                    sendIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
+                    startActivity(Intent.createChooser(sendIntent, null));
+                }catch(Exception e){e.printStackTrace();}
+                break;
+
+            case 5:
+                // داروخانه ها
+                break;
+        }
     }
 
     @Override

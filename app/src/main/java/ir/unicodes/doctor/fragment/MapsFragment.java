@@ -7,32 +7,39 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import ir.unicodes.doctor.Interface.OnFragmentInteractionListener;
 import ir.unicodes.doctor.R;
-import ir.unicodes.doctor.activity.MainActivity;
 
-public class ServicesFragment extends Fragment {
+public class MapsFragment extends Fragment {
 
     private ViewGroup layout;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
 
-    private LinearLayout layInsurance,layServices,layTurn,layCosts;
-    private TextView txtCareBefore, txtCareAfter;
+    private GoogleMap mMap;
+    public LatLng tehran_latLng =  null;
 
-    public ServicesFragment() {}
+    public MapsFragment() {}
 
-    public static ServicesFragment newInstance(String param1, String param2) {
-        ServicesFragment fragment = new ServicesFragment();
+    public static MapsFragment newInstance(String param1, String param2) {
+        MapsFragment fragment = new MapsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -52,66 +59,30 @@ public class ServicesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        layout = (ViewGroup) inflater.inflate(R.layout.fragment_services, container, false);
+        // Inflate the layout for this fragment
+        layout = (ViewGroup) inflater.inflate(R.layout.fragment_map, container, false);
         return layout;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        String lat = "0000.00";
+        String lng = "0000.00";
+        tehran_latLng = new LatLng(Float.parseFloat(lat), Float.parseFloat(lng));
 
-        MainActivity.isMain = false;
+        try {
 
-        txtCareAfter    = (TextView) layout.findViewById(R.id.txtCareAfter);
-        txtCareBefore   = (TextView) layout.findViewById(R.id.txtCareBefore);
-        layTurn         = (LinearLayout) layout.findViewById(R.id.layTurn);
-        layServices     = (LinearLayout) layout.findViewById(R.id.layServices);
-        layCosts        = (LinearLayout) layout.findViewById(R.id.layCosts);
-        layInsurance    = (LinearLayout) layout.findViewById(R.id.layInsurance);
+            //mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+            CameraUpdate cam= CameraUpdateFactory.newLatLngZoom(tehran_latLng,17);
+            mMap.animateCamera(cam);
 
-        layInsurance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onButtonPressed(20);
-            }
-        });
+            Marker marker = mMap.addMarker(new MarkerOptions().position(tehran_latLng)
+                    .title("")
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
 
-        layServices.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onButtonPressed(21);
-            }
-        });
-
-        layTurn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onButtonPressed(22);
-            }
-        });
-
-        layCosts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onButtonPressed(23);
-            }
-        });
-
-        txtCareAfter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onButtonPressed(24);
-            }
-        });
-
-        txtCareBefore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onButtonPressed(25);
-            }
-        });
-
-
+        } // end try
+        catch (Exception e) { e.printStackTrace(); }
     }
 
     @Override
@@ -119,7 +90,8 @@ public class ServicesFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         Bundle bundle = getArguments();
         if (bundle != null) {
-            mParam1 = bundle.getString("title");
+            mParam1 = bundle.getString("param1");
+            mParam2 = bundle.getString("param2");
         }
     }
 

@@ -6,35 +6,26 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.TextView;
 
 import ir.unicodes.doctor.Interface.OnFragmentInteractionListener;
 import ir.unicodes.doctor.R;
-import ir.unicodes.doctor.classes.Variables;
-import ir.unicodes.doctor.fragment.ListDataFragment;
+import ir.unicodes.doctor.fragment.MapsFragment;
 
-public class NewsActivity extends AppCompatActivity
+public class ContactUs extends AppCompatActivity
         implements
-        OnFragmentInteractionListener {
+        OnFragmentInteractionListener
+{
 
     private Typeface San;
     private Toolbar toolbar;
     private TextView txtToolbar;
     private FragmentManager fragmentManager;
-    /*FACTION is type of data which get from server*/
-    private String FACTION = Variables.getNews;
-    /*isFolder = {
-                false :list of data to show
-                true  :folder of objects
-     }*/
-    private Boolean isFolder = false;
-    /*onCreate*/
+    // end onCreate()
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_news);
+        setContentView(R.layout.activity_contact_us);
         define();
         setFragment();
     }// end onCreate()
@@ -47,16 +38,16 @@ public class NewsActivity extends AppCompatActivity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         txtToolbar = (TextView) findViewById(R.id.txtToolbar_appbar);
         txtToolbar.setTypeface(San);
-        txtToolbar.setText("اخبار");
+        txtToolbar.setText("تماس با ما");
         fragmentManager = getSupportFragmentManager();
     }// end define()
-    /*set fragment*/
+    /*set map fragment to activity*/
     protected void setFragment() {
 
-        ListDataFragment myFragment = new ListDataFragment();
+        MapsFragment myFragment = new MapsFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("FACTION", FACTION);
-        bundle.putBoolean("KIND", isFolder);
+        bundle.putString("", "");
+        bundle.putString("", "");
         myFragment.setArguments(bundle);
 
         FragmentTransaction ft = fragmentManager.beginTransaction();
@@ -64,32 +55,10 @@ public class NewsActivity extends AppCompatActivity
         ft.commit();
 
     }// end setFragment()
-
+    /*on fragment views click handler*/
     @Override
     public void onFragmentInteraction(int tagNumber) {
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_empty, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-        switch(id){
-            case android.R.id.home:
-                finish();
-                break;
-
-            default:
-                break;
-
-        }
-        return false;
-    }
+    }// end onFragmentInteraction()
 
 }// end class

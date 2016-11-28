@@ -1,13 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="ir.unicodes.doctor">
 
+    <uses-permission android:name="ir.unicodes.doctor.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
+        android:name="com.orm.SugarApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="false"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon">
+        <meta-data
+            android:name="DATABASE"
+            android:value="doctor.db" />
+        <meta-data
+            android:name="VERSION"
+            android:value="1" />
+        <meta-data
+            android:name="QUERY_LOG"
+            android:value="true" />
+        <meta-data
+            android:name="DOMAIN_PACKAGE_NAME"
+            android:value="ir.unicodes.doctor" />
+
         <activity
             android:name=".activity.SplashActivity"
             android:screenOrientation="portrait">
@@ -22,7 +48,22 @@
             android:screenOrientation="portrait" />
         <activity android:name=".activity.AboutUsActivity" />
         <activity android:name=".activity.ClubActivity" />
-        <activity android:name=".activity.NewsActivity"></activity>
+        <activity android:name=".activity.NewsActivity" />
+        <activity android:name=".activity.MagazineActivity" />
+        <activity android:name=".activity.DeveloperActivity" />
+        <activity android:name=".activity.SendIdeasActivity" />
+        <activity android:name=".activity.ServicesActivity" />
+        <activity android:name=".activity.InsuranceActivity" />
+        <activity android:name=".activity.SpecialPartsActivity" />
+        <activity android:name=".activity.CareActivity" />
+        <activity android:name=".activity.DrugsActivity" />
+        <activity android:name=".activity.FavoriteActivity" />
+        <activity android:name=".activity.MultimediaActivity" />
+        <activity android:name=".activity.MultimediaFoldersActivity" />
+        <activity android:name=".activity.PollActivity" />
+        <activity android:name=".activity.ChatActivity" />
+        <activity android:name=".activity.ContactUs" />
+        <activity android:name=".fragment.MapActivity"></activity>
     </application>
 
 </manifest>

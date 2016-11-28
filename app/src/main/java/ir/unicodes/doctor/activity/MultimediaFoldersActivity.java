@@ -15,7 +15,7 @@ import ir.unicodes.doctor.R;
 import ir.unicodes.doctor.classes.Variables;
 import ir.unicodes.doctor.fragment.ListDataFragment;
 
-public class NewsActivity extends AppCompatActivity
+public class MultimediaFoldersActivity extends AppCompatActivity
         implements
         OnFragmentInteractionListener {
 
@@ -24,17 +24,18 @@ public class NewsActivity extends AppCompatActivity
     private TextView txtToolbar;
     private FragmentManager fragmentManager;
     /*FACTION is type of data which get from server*/
-    private String FACTION = Variables.getNews;
+    private String FACTION = "";
     /*isFolder = {
                 false :list of data to show
                 true  :folder of objects
      }*/
-    private Boolean isFolder = false;
+    private Boolean isFolder = true;
     /*onCreate*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
+        FACTION = getIntent().getStringExtra("FACTION");
         define();
         setFragment();
     }// end onCreate()
@@ -47,12 +48,15 @@ public class NewsActivity extends AppCompatActivity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         txtToolbar = (TextView) findViewById(R.id.txtToolbar_appbar);
         txtToolbar.setTypeface(San);
-        txtToolbar.setText("اخبار");
+        if(FACTION.equals(Variables.getVideos)){
+            txtToolbar.setText("گالری ویدیو");
+        }else{
+            txtToolbar.setText("گالری عکس");
+        }
         fragmentManager = getSupportFragmentManager();
     }// end define()
     /*set fragment*/
     protected void setFragment() {
-
         ListDataFragment myFragment = new ListDataFragment();
         Bundle bundle = new Bundle();
         bundle.putString("FACTION", FACTION);
